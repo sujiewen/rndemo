@@ -8,13 +8,17 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView} from 'react-navigation'
 
 import Top from './Top'
 type Props = {};
 export default class PopularPage extends Component <Props> {
   render() {
     return (
-      <Top></Top>
+        <SafeAreaView style={{ flex: 1 }}
+                      forceInset={{ horizontal: 'always', top: 'always' }}>
+          <Top></Top>
+        </SafeAreaView>
     );
   }
 }

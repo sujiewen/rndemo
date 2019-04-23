@@ -6,7 +6,7 @@ type Props = {};
 export default class WelcomePage extends Component <Props> {
     componentDidMount() {
         this.timer = setTimeout(() => {
-            NaivgationUtil.resetToHomePage({
+            NaivgationUtil.resetToLoginPage({
                 navigation: this.props.navigation
             })
         }, 2000);

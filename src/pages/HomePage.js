@@ -17,14 +17,15 @@ import {
 } from 'react-native';
 
 
-import Tab from './Tab'
+import Tab from './MainTab'
 import NaivgationUtil from '../navigator/NavigationUtil';
+
 type Props = {};
 export default class HomePage extends Component < Props > {
   render() {
     NaivgationUtil.navigation = this.props.navigation;
     return (
-      <Tab></Tab>
+        <Tab></Tab>
     );
   }
 }
