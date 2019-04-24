@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image,TouchableOpacity,FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import { personData } from "../main/DataSource";
+import ImagePlaceholder from '../common/ImagePlaceholder'
 
 class PersonAddPage extends Component {
 

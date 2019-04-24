@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image,TouchableOpacity,SectionList} from 'react-native';
+import {View, Text, StyleSheet, Image,TouchableOpacity,SectionList,Platform} from 'react-native';
 import {connect} from 'react-redux';
 import {NavigationActions,StackActions} from 'react-navigation';
 import  http from  "../common/shttp"
 import  {THEME_TEXT} from  '../assets/css/color'
-import ImageAndroid from '../common/ImageAndroid'
+import ImagePlaceholder from '../common/ImagePlaceholder';
 
 // 清空导航记录，跳转到登录页
 const resetAction = StackActions.reset({
@@ -130,7 +130,16 @@ class EnterpriseAddPage extends Component {
         if(contact.type == 0) {
             return (
                 <TouchableOpacity style={styles.row} onPress={ () => {}}>
-                    <Image defaultSource={require('../assets/images/person_placeholder.png')} source={{uri:(contact.userPortraitUrl != null ? contact.userPortraitUrl : '')}} style={styles.image} />
+
+                    <ImagePlaceholder defaultSource={require('../assets/images/person_placeholder.png')} source={{ uri: contact.userPortraitUrl}} style={styles.image} />
+
+                    {/*{*/}
+                    {/*(contact.userPortraitUrl != null && contact.userPortraitUrl != '' && contact.userPortraitUrl != undefined) ? (*/}
+                    {/*    <Image defaultSource={require('../assets/images/person_placeholder.png')} source={{ uri: contact.userPortraitUrl}} style={styles.image} />*/}
+                    {/*) : (<Image defaultSource={require('../assets/images/person_placeholder.png')} source={require('../assets/images/person_placeholder.png')} style={styles.image} />)*/}
+
+                    {/*}*/}
+
                     <View style={styles.rContainer}>
                         <Text style={styles.title}>{contact.userName}</Text>
                         <Text style={styles.subtitle}>{contact.postName}</Text>
@@ -144,7 +153,7 @@ class EnterpriseAddPage extends Component {
                 <TouchableOpacity style={styles.row} onPress={ () => {
                     this.jumpDeparment(contact.id)}
                 }>
-                    <Image defaultSource={require('../assets/images/group_placeholder.png')} source={{uri:''}} style={styles.image} />
+                    <Image defaultSource={require('../assets/images/group_placeholder.png')} source={require('../assets/images/company_placeholder.png')} style={styles.image} />
                     <View style={styles.rContainer}>
                         <Text style={styles.title}>{contact.name}</Text>
                     </View>
@@ -170,7 +179,7 @@ class EnterpriseAddPage extends Component {
 
         if (itemData.selected) {
             this.state.data.map((item, index) => {
-                if (item.index === itemData.index) {
+                if (item.imagePlaceholder === itemData.imagePlaceholder) {
                     item.selected = !item.selected;
                     item.data = [];
                 }
@@ -249,6 +258,7 @@ const styles = StyleSheet.create({
     sImage: { marginLeft: 20, width: 44, height: 44 },
     row: { flexDirection: "row", alignItems: "center",height:80},
     image: { marginLeft: 40, width: 44, height: 44,borderRadius: 4 },
+    subImage: { marginLeft: 40, width: 44, height: 44,borderRadius: 4 },
     rContainer: { marginLeft: 30 },
     title: { fontSize: 18 },
     subtitle: { fontSize: 14, marginTop: 8 },

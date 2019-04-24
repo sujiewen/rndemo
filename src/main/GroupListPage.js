@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Image,TouchableOpacity,FlatList} from 'react-nat
 import {connect} from 'react-redux';
 import { groupData } from "../main/DataSource";
 import {THEME_TEXT} from "../assets/css/color";
+import ImagePlaceholder from '../common/ImagePlaceholder'
 
 class GroupListPage extends Component {
 
