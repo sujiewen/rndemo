@@ -19,6 +19,7 @@ import * as dataAction from './dataAction'
 import {TabNavigatorContainer,TabNavigator2Container} from '../pages/Top'
 import {SafeAreaView} from "react-navigation";
 import CustomNavigatorBar from '../navigator/CustomNavigatorBar'
+import { Avatar, Badge, Icon, withBadge,Header } from 'react-native-elements'
 
 let {
     height: deviceHeight,
@@ -127,18 +128,20 @@ class ContactPage extends Component {
         const {navigate} = this.props.navigation;
         return (
             <View style={{ flex: 1 }}>
-                <View style={{height: this.state.navigatorHeight}}>
-                    <ImageBackground source={require('../assets/images/nav_bg.png')} resizeMode={'cover'} style={{width:this.state.navigatorWidth, height: this.state.navigatorHeight}}>
-                        <View style={{paddingTop:statusBarHeight,height:navigationHeight,width:this.state.navigatorWidth}}>
-                            <Text style={{fontSize: 20,color: 'white', textAlign:'center',paddingTop:12,height:navigationHeight}}>通讯录</Text>
-                        </View>
-                    </ImageBackground>
-                </View>
+                <Header
+                    statusBarProps={{ barStyle: 'light-content' }}
+                    barStyle="light-content" // or directly
+                    centerComponent={{ text: '通讯录', style: { color: '#fff',fontSize:20} }}
+                    containerStyle={{
+                        backgroundColor: '#3D6DCC',
+                        justifyContent: 'space-around',
+                    }}
+                    backgroundImage={require('../assets/images/nav_bg.png')}
+                />
 
                 <TouchableOpacity onPress = {() => {this.click();}}>
                     <View　 style={styles.searchStyle} >
-                        <Image style={{width:40,height:40}} source={require('../assets/images/search_button.png')}>
-                        </Image>
+                        <Image style={{width:40,height:40}} source={require('../assets/images/search_button.png')}/>
                     </View>
                 </TouchableOpacity>
 

@@ -3,8 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "release": "node ./scripts/release.js",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "ios": "react-native run-ios",
+    "android": "react-native run-android",
+    "xcode": "open ios/reactnavigation.xcodeproj/",
+    "test": "jasmine src/*.spec.js && npm run lint",
+    "lint": "eslint src/ example/src"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -12,6 +17,7 @@
     "react": "16.8.3",
     "react-native": "^0.59.3",
     "react-native-device-info": "^1.5.0",
+    "react-native-elements": "^1.1.0",
     "react-native-fast-image": "^5.3.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-md5": "^1.0.0",

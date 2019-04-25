@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image,TouchableOpacity,SectionList,Platform} from 'react-native';
+import {View, Text, StyleSheet, Image,TouchableOpacity,SectionList,Platform,ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 import {NavigationActions,StackActions} from 'react-navigation';
 import  http from  "../common/shttp"
 import  {THEME_TEXT} from  '../assets/css/color'
 import ImagePlaceholder from '../common/ImagePlaceholder';
+import { Avatar, Badge, Icon, withBadge,Header, Image as ImageOther} from 'react-native-elements'
 
 // 清空导航记录，跳转到登录页
 const resetAction = StackActions.reset({
@@ -131,7 +132,7 @@ class EnterpriseAddPage extends Component {
             return (
                 <TouchableOpacity style={styles.row} onPress={ () => {}}>
 
-                    <ImagePlaceholder defaultSource={require('../assets/images/person_placeholder.png')} source={{ uri: contact.userPortraitUrl}} style={styles.image} />
+                    {/*<ImagePlaceholder defaultSource={require('../assets/images/person_placeholder.png')} source={{ uri: contact.userPortraitUrl}} style={styles.image} />*/}
 
                     {/*{*/}
                     {/*(contact.userPortraitUrl != null && contact.userPortraitUrl != '' && contact.userPortraitUrl != undefined) ? (*/}
@@ -139,6 +140,15 @@ class EnterpriseAddPage extends Component {
                     {/*) : (<Image defaultSource={require('../assets/images/person_placeholder.png')} source={require('../assets/images/person_placeholder.png')} style={styles.image} />)*/}
 
                     {/*}*/}
+
+                    <ImageOther
+                        source={{ uri: contact.userPortraitUrl }}
+                        style={styles.image}
+                        PlaceholderContent={
+                            <Image defaultSource={require('../assets/images/group_placeholder.png')} source={require('../assets/images/company_placeholder.png')} style={styles.image} />
+                        }
+                    />
+
 
                     <View style={styles.rContainer}>
                         <Text style={styles.title}>{contact.userName}</Text>

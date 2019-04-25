@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet,TouchableOpacity,
     Button,
     TextInput,
-    Image,
     Dimensions,
     ImageBackground,
     FlatList
@@ -12,6 +11,7 @@ import * as loginAction from './loginAction';// 导入action方法
 import {NavigationActions,StackActions} from 'react-navigation';
 import Modal from "react-native-simple-modal";
 import LXRequest from "../common/LXRequest";
+import { Image } from 'react-native-elements';
 
 import NaivgationUtil from '../navigator/NavigationUtil';
 

@@ -11,6 +11,9 @@ import ContactPage from '../main/ContactPage';
 import AttendancePage from '../main/AttendancePage';
 import WorksPage from '../main/WorksPage';
 import PersonPage from '../main/PersonPage';
+import {View, ImageBackground} from 'react-native';
+import { Avatar, Badge, Icon, withBadge } from 'react-native-elements'
+
 
 import {Image, StyleSheet} from "react-native";
 import {THEME, THEME_BACKGROUND} from "../assets/css/color";
@@ -23,7 +26,9 @@ const TabNavigator = createBottomTabNavigator({
             tabBarIcon: ({focused}) => {
                 if (focused) {
                     return (
-                        <Image style={[styles.icon]} source={require('../assets/images/tab_message_selected.png')}/>
+                        <ImageBackground style={[styles.icon]} source={require('../assets/images/tab_message_selected.png')}>
+                            <Badge value="99+" status="error" containerStyle={{ position: 'absolute', top: -4, right: -20 }}/>
+                        </ImageBackground>
                     );
                 }
                 return (

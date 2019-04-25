@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, Image,TouchableOpacity,FlatList} from 'react-nat
 import {connect} from 'react-redux';
 import { personData } from "../main/DataSource";
 import ImagePlaceholder from '../common/ImagePlaceholder'
+import * as loginAction from "../login/loginAction";
+import NavigationService from "../navigator/NavigationService";
 
 class PersonAddPage extends Component {
 
@@ -15,7 +17,16 @@ class PersonAddPage extends Component {
         };
     }
 
-    componentDidMount() {
+    // 状态更新，判断是否登录并作出处理
+    shouldComponentUpdate(nextProps, nextState) {
+        console.warn('状态更新1');
+        // 登录完成,切成功登录
+        if(nextProps.status == '注销登录') {
+            NavigationService.navigate('Login', {});
+            return false;
+        }
+
+        return true;
     }
 
     render() {
@@ -33,7 +44,9 @@ class PersonAddPage extends Component {
 
     renderTItem(contact) {
         return (
-            <TouchableOpacity style={styles.row} onPress={ () => {}}>
+            <TouchableOpacity style={styles.row} onPress={ () => {
+                this.logout();
+            }}>
                 <Image defaultSource={require('../assets/images/group_placeholder.png')} source={{uri:contact.portraitUrl}} style={styles.image} />
                 <View style={styles.rContainer}>
                     <Text style={styles.rowText}>{contact.name}</Text>
@@ -42,6 +55,11 @@ class PersonAddPage extends Component {
                 <View style={styles.line} />
             </TouchableOpacity>
         );
+    }
+
+    logout() {
+        const {loginOut} = this.props;
+        loginOut('','');
     }
 }
 
@@ -86,6 +104,7 @@ export default connect(
         user: state.loginIn.user
     }),
     (dispatch) => ({
-
+        loginOut: (m, p) => dispatch(loginAction.loginOut(m, p)),
+        logined: (m, p) => dispatch(loginAction.loginSuccess(m, p)),
     })
 )(PersonAddPage)

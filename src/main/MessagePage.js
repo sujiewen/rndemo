@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {THEME_BACKGROUND} from '../assets/css/color';
 import CustomNavigatorBar from "../navigator/CustomNavigatorBar";
 import NaivgationUtil from  '../navigator/NavigationUtil'
+import { Avatar, Badge, Icon, withBadge,Header } from 'react-native-elements'
+
 type Props = {};
 class MessagePage extends Component<Props> {
     // static navigationOptions = {
@@ -44,7 +46,18 @@ class MessagePage extends Component<Props> {
 
         return (
             <View style={{flex: 1}}>
-                <CustomNavigatorBar></CustomNavigatorBar>
+
+                <Header
+                    statusBarProps={{ barStyle: 'light-content' }}
+                    barStyle="light-content" // or directly
+                    centerComponent={{ text: '消息', style: { color: '#fff',fontSize:20} }}
+                    containerStyle={{
+                        backgroundColor: '#3D6DCC',
+                        justifyContent: 'space-around',
+                    }}
+                    backgroundImage={require('../assets/images/nav_bg.png')}
+                />
+
                 <Text style={{fontSize: 20}}>  欢迎来到消息！</Text>
                 <Text style={{marginTop:100,alignItems: 'center'}} onPress={() => {
                     NaivgationUtil.goPage({
